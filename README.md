@@ -89,8 +89,18 @@ Confeeg will load up configuration data from:
  - environment variables, defaulting to those that begin with 'CONFIG_'
  - any passed-in configuration object
 
-You can control the order that configuration data is loaded, with later-loaded configuration data
-overriding earlier data.
+## Options
+
+### envPrefix (string, default: 'CONFIG')
+
+You can use this to control your configuration variable prefix if you prefer
+something other than 'CONFIG_'.
+
+### allowEmptyEnvVars (boolean, default: false)
+
+When loading environment variables, Confeeg will by default skip any empty/unset environment variables.
+
+### envHierarchy (boolean, default: true)
 
 When loading from environment variables, Confeeg will use underscores to denote hierarchy, eg:
 
@@ -120,13 +130,31 @@ Config.load( {
 } );
 ```
 
-### Default Loading Order
+### files (array, default: [ 'CONFIG_DEFAULTS.json', 'config.json' ])
 
-The default loading order is:
+You can override the default files that Confeeg will search for using this setting.
 
- - files
- - environment
- - passed-in config
+### order (array, default: [ 'files', 'env', 'config' ] )
+
+You can override the loading order:
+
+```javascript
+var Config = require( 'confeeg' );
+var util = require( 'util' );
+
+Config.load( {
+    order: [
+        'env', // load from environment first
+        'config', // then load from whatever default config is passed in
+        'files' // then load from files on disk
+    ]
+    config: {
+        foo: 'bar'
+    }
+}, function( error, config ) {
+    console.log( util.inspect( config ) );
+} );
+```
 
 ## License
 

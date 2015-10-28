@@ -10,6 +10,7 @@ var path = require( 'path' );
 var DEFAULTS = {
     envPrefix: 'CONFIG',
     envHierarchy: true,
+    allowEmptyEnvVars: false,
     files: [
         'CONFIG_DEFAULTS.json',
         'config.json'
@@ -37,6 +38,10 @@ var loaders = {
     env: function( options, config, callback ) {
         for ( var varName in process.env ) {
             if ( varName.indexOf( options.envPrefix + '_' ) !== 0 ) {
+                continue;
+            }
+
+            if ( !options.allowEmptyEnvVars && ( typeof process.env[ varName ] === 'undefined' || process.env[ varName ].length === 0 ) ) {
                 continue;
             }
 
@@ -88,7 +93,7 @@ module.exports = {
             if ( options.collapse ) {
                 config = extend( {}, config, config[ options.collapse ] );
             }
-            
+
             callback( null, config );
         } );
     }
