@@ -120,6 +120,14 @@ Config.load( {
 } );
 ```
 
+### Default Loading Order
+
+The default loading order is:
+
+ - files
+ - environment
+ - passed-in config
+
 ## License
 
 The MIT License (MIT)
