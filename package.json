@@ -1,6 +1,6 @@
 {
-  "name": "configur",
-  "version": "0.1.0",
+  "name": "confeeg",
+  "version": "0.1.1",
   "description": "Load configuration from files, environment variables and passed-in defaults.",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,17 @@
     "config",
     "environment"
   ],
-  "author": "Andy Burke <aburke@bitflood.org>",
+  "company": "Float, Inc. (https://hellofloat.com)",
+  "contributors": [ {
+      "name": "Andy Burke",
+      "email": "aburke@bitflood.org",
+      "url": "http://github.com/andyburke"
+  } ],
   "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/hellofloat/confeeg.git"
+  },
   "devDependencies": {
     "glob": "^5.0.15",
     "tap-spec": "^4.1.0",

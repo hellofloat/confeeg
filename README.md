@@ -1,5 +1,5 @@
 
-# Configur
+# Confeeg
 
 Load configuration from files, environment variables and passed-in defaults.
 
@@ -9,7 +9,7 @@ Simplest example, will load any of the default config files ( CONFIG_DEFAULTS.js
 the CWD and will bring in any environment variables starting with 'CONFIG_'.
 
 ```javascript
-var Config = require( 'configur' );
+var Config = require( 'confeeg' );
 var util = require( 'util' );
 
 Config.load( function( error, config ) {
@@ -20,7 +20,7 @@ Config.load( function( error, config ) {
 Let's change the default filenames to load:
 
 ```javascript
-var Config = require( 'configur' );
+var Config = require( 'confeeg' );
 var util = require( 'util' );
 
 Config.load( {
@@ -36,7 +36,7 @@ Let's change the environment variable prefix to load all environment
 variable starting with 'FOO_' instead of 'CONFIG_':
 
 ```javascript
-var Config = require( 'configur' );
+var Config = require( 'confeeg' );
 var util = require( 'util' );
 
 Config.load( {
@@ -49,7 +49,7 @@ Config.load( {
 Let's pass in a default config:
 
 ```javascript
-var Config = require( 'configur' );
+var Config = require( 'confeeg' );
 var util = require( 'util' );
 
 Config.load( {
@@ -64,7 +64,7 @@ Config.load( {
 Let's change the loading precedence:
 
 ```javascript
-var Config = require( 'configur' );
+var Config = require( 'confeeg' );
 var util = require( 'util' );
 
 Config.load( {
@@ -83,7 +83,7 @@ Config.load( {
 
 ## About
 
-Configur will load up configuration data from:
+Confeeg will load up configuration data from:
 
  - json configuration files, defaulting to CONFIG_DEFAULTS.json and config.json
  - environment variables, defaulting to those that begin with 'CONFIG_'
@@ -92,7 +92,7 @@ Configur will load up configuration data from:
 You can control the order that configuration data is loaded, with later-loaded configuration data
 overriding earlier data.
 
-When loading from environment variables, Configur will use underscores to denote hierarchy, eg:
+When loading from environment variables, Confeeg will use underscores to denote hierarchy, eg:
 
 ```
 CONFIG_FOO_BAR_BAZ="yak"
