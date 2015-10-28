@@ -91,7 +91,7 @@ module.exports = {
             }
 
             if ( options.collapse ) {
-                config = extend( {}, config, config[ options.collapse ] );
+                config = extend( true, {}, config, config[ options.collapse ] );
             }
 
             callback( null, config );

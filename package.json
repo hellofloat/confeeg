@@ -1,6 +1,6 @@
 {
   "name": "confeeg",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Load configuration from files, environment variables and passed-in defaults.",
   "main": "index.js",
   "scripts": {
