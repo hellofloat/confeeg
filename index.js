@@ -80,7 +80,16 @@ module.exports = {
 
             loader( options, config, next );
         }, function( error ) {
-            callback( error, config );
+            if ( error ) {
+                callback( error );
+                return;
+            }
+
+            if ( options.collapse ) {
+                config = extend( {}, config, config[ options.collapse ] );
+            }
+            
+            callback( null, config );
         } );
     }
 };
