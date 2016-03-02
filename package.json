@@ -1,6 +1,6 @@
 {
   "name": "confeeg",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Load configuration from files, environment variables and passed-in defaults.",
   "main": "index.js",
   "scripts": {
@@ -28,8 +28,7 @@
   },
   "dependencies": {
     "async": "^1.5.0",
-    "delver": "0.0.11",
-    "es6-shim": "^0.33.8",
+    "delver": "^1.1.0",
     "extend": "^3.0.0"
   }
 }
