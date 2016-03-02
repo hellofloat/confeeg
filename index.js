@@ -1,13 +1,12 @@
 'use strict';
 
-require( 'es6-shim' ); // shim in the good stuff
-var async = require( 'async' );
-var Delver = require( 'delver' );
-var extend = require( 'extend' );
-var fs = require( 'fs' );
-var path = require( 'path' );
+const async = require( 'async' );
+const Delver = require( 'delver' );
+const extend = require( 'extend' );
+const fs = require( 'fs' );
+const path = require( 'path' );
 
-var DEFAULTS = {
+const DEFAULTS = {
     envPrefix: 'CONFIG',
     envHierarchy: true,
     allowEmptyEnvVars: false,
@@ -22,10 +21,10 @@ var DEFAULTS = {
     ]
 };
 
-var loaders = {
+const loaders = {
     files: function( options, config, callback ) {
         async.eachSeries( options.files, function( filename, next ) {
-            var file = path.join( process.cwd(), filename );
+            const file = path.join( process.cwd(), filename );
             fs.access( file, fs.R_OK, function( error ) {
                 if ( !error ) {
                     extend( config, require( file ) );
@@ -36,7 +35,11 @@ var loaders = {
     },
 
     env: function( options, config, callback ) {
-        for ( var varName in process.env ) {
+        for ( const varName in process.env ) {
+            if ( !process.env.hasOwnProperty( varName ) ) {
+                continue;
+            }
+
             if ( varName.indexOf( options.envPrefix + '_' ) !== 0 ) {
                 continue;
             }
@@ -45,7 +48,7 @@ var loaders = {
                 continue;
             }
 
-            var key = null;
+            let key = null;
 
             if ( options.envHierarchy ) {
                 key = varName.split( '_' ).slice( 1 ).join( '.' ).toLowerCase();
@@ -72,12 +75,12 @@ module.exports = {
             _options = null;
         }
 
-        var options = extend( {}, DEFAULTS, _options );
+        const options = extend( {}, DEFAULTS, _options );
 
-        var config = {};
+        let config = {};
 
         async.eachSeries( options.order, function( type, next ) {
-            var loader = loaders[ type ];
+            const loader = loaders[ type ];
             if ( !loader ) {
                 next( 'Invalid loader type: ' + type );
                 return;
