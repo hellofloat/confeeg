@@ -1,12 +1,11 @@
 
 # Confeeg
 
-Load configuration from files, environment variables and passed-in defaults.
+Load configuration from files, environment variables, and passed-in defaults.
 
 ## Examples
 
-Simplest example, will load any of the default config files ( CONFIG_DEFAULTS.json, config.json ) from
-the CWD and will bring in any environment variables starting with 'CONFIG_'.
+In the simplest example, [`Confeeg`](https://github.com/hellofloat/confeeg) will load any of the default config files ( named: `CONFIG_DEFAULTS` or `config`; extensions: `.json`, `.yaml`, or `.yml` ) from the CWD and will bring in any environment variables starting with 'CONFIG_'.
 
 ```javascript
 var Config = require( 'confeeg' );
@@ -25,7 +24,8 @@ var util = require( 'util' );
 
 Config.load( {
     files: [
-        'myconfig.json'
+        'my_config.json',
+        'another_config.yml'
     ]
 }, function( error, config ) {
     console.log( util.inspect( config ) );
@@ -69,9 +69,9 @@ var util = require( 'util' );
 
 Config.load( {
     order: [
-        'env', // load from environment first
+        'env',    // load from environment first
         'config', // then load from whatever default config is passed in
-        'files' // then load from files on disk
+        'files'   // then load from files on disk
     ]
     config: {
         foo: 'bar'
@@ -85,7 +85,8 @@ Config.load( {
 
 Confeeg will load up configuration data from:
 
- - json configuration files, defaulting to CONFIG_DEFAULTS.json and config.json
+ - `json` configuration files, defaulting to CONFIG_DEFAULTS.json and config.json
+ - `yaml` (and `yml`) configuration files (same filename defaults above)
  - environment variables, defaulting to those that begin with 'CONFIG_'
  - any passed-in configuration object
 
@@ -104,7 +105,7 @@ When loading environment variables, Confeeg will by default skip any empty/unset
 
 When loading from environment variables, Confeeg will use underscores to denote hierarchy, eg:
 
-```
+```shell
 CONFIG_FOO_BAR_BAZ="yak"
 ```
 
@@ -122,7 +123,7 @@ Would end up in a configuration object as:
 
 However, you can disable that behavior by setting the 'envHierarchy' option to false, eg:
 
-```
+```javascript
 Config.load( {
     envHierarchy: false
 }, function( error, config ) {

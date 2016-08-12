@@ -29,4 +29,29 @@ module.exports = function() {
             t.end();
         } );
     } );
+
+    test( 'load ordering (with yaml files)', function( t ) {
+        Config.load( {
+            order: [
+                'config',
+                'files'
+            ],
+            files: [
+                'test_defaults_3.yml'
+            ],
+            config: {
+                yam: 'blah',
+                blah: 'foo'
+            }
+        }, function( error, config ) {
+            process.env.CONFIG_ENVFOO = 'bar';
+            t.error( error, 'no error loading config' );
+            t.ok( config, 'config loaded' );
+            t.equal( config.blah, 'foo', 'default config loaded' );
+            t.equal( config.yam, 'potato', 'files loaded after default config' );
+            t.notOk( config.envfoo, 'env config not loaded at all (not in order)' );
+            delete process.env.CONFIG_ENVFOO;
+            t.end();
+        } );
+    } );
 };

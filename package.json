@@ -1,7 +1,7 @@
 {
   "name": "confeeg",
-  "version": "0.3.3",
-  "description": "Load configuration from files, environment variables and passed-in defaults.",
+  "version": "0.4.0",
+  "description": "Load configuration from files, environment variables, and passed-in defaults.",
   "main": "index.js",
   "scripts": {
     "test": "cd test && tape ./test.js | tap-spec"
@@ -11,24 +11,28 @@
     "environment"
   ],
   "company": "Float, Inc. (https://hellofloat.com)",
-  "contributors": [ {
-      "name": "Andy Burke",
-      "email": "aburke@bitflood.org",
-      "url": "http://github.com/andyburke"
-  } ],
+  "contributors": [
+    "Andy Burke <aburke@bitflood.org> (https://github.com/andyburke)",
+    "Greg Cardoni <greg@cardoni.net> (https://cardoni.net)"
+  ],
   "license": "MIT",
+  "homepage": "https://github.com/hellofloat/confeeg#readme",
   "repository": {
-      "type": "git",
-      "url": "git://github.com/hellofloat/confeeg.git"
+    "type": "git",
+    "url": "git+https://github.com/hellofloat/confeeg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hellofloat/confeeg/issues"
   },
   "devDependencies": {
-    "glob": "^5.0.15",
-    "tap-spec": "^4.1.0",
-    "tape": "^4.2.0"
+    "glob": "^7.0.5",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
   },
   "dependencies": {
-    "async": "^1.5.0",
-    "delver": "^1.1.0",
-    "extend": "^3.0.0"
+    "async": "^2.0.1",
+    "delver": "^1.1.2",
+    "extend": "^3.0.0",
+    "js-yaml": "^3.6.1"
   }
 }
