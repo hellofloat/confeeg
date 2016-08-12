@@ -1,0 +1,12 @@
+testing: 'defaults'
+filetype: 'yaml'
+success: true
+stuff:
+    array: [ 1, 2, 3, 4, 5 ]
+    object:
+        foo: 'bar'
+        baz: 'foo'
+        hello: 'world'
+    number: 42
+    string: 'hello world'
+    boolean: false

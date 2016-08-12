@@ -5,6 +5,7 @@ const Delver = require( 'delver' );
 const extend = require( 'extend' );
 const fs = require( 'fs' );
 const path = require( 'path' );
+const yaml = require( 'js-yaml' );
 
 const DEFAULTS = {
     envPrefix: 'CONFIG',
@@ -12,7 +13,11 @@ const DEFAULTS = {
     allowEmptyEnvVars: false,
     files: [
         'CONFIG_DEFAULTS.json',
-        'config.json'
+        'config.json',
+        'CONFIG_DEFAULTS.yaml',
+        'config.yaml',
+        'CONFIG_DEFAULTS.yml',
+        'config.yml'
     ],
     order: [
         'files',
@@ -27,7 +32,15 @@ const loaders = {
             const file = path.join( process.cwd(), filename );
             fs.access( file, fs.R_OK, function( error ) {
                 if ( !error ) {
-                    extend( config, require( file ) );
+                    switch ( path.extname( file ).toLowerCase() ) {
+                        case '.yaml':
+                        case '.yml':
+                            extend( config, yaml.safeLoad( fs.readFileSync( file, 'utf8' ) ) );
+                            break;
+                        default:
+                            extend( config, require( file ) );
+                            break;
+                    }
                 }
                 next();
             } );
